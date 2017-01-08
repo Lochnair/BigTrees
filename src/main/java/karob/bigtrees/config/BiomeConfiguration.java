@@ -78,14 +78,14 @@ public class BiomeConfiguration {
 		Set<BiomeDictionary.Type> result = new HashSet<BiomeDictionary.Type>();
 		
 		for (String biomeTypeName : biomeTypeNames) {
-			result.add(BiomeDictionary.Type.valueOf(biomeTypeName));
+			result.add(BiomeDictionary.Type.getType(biomeTypeName));
 		}
 		
 		return result;
 	}
 	
 	public Match matches(Biome biome) {
-		BiomeDictionary.Type[] types = BiomeDictionary.getTypesForBiome(biome);
+		Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(biome);
 		
 		if (hasBiomeSpecificOverride(biome)) {
 			return Match.PriorityMatch;
@@ -102,7 +102,7 @@ public class BiomeConfiguration {
 		return specificBiomes.contains(biome.getBiomeName().toLowerCase());
 	}
 	
-	private boolean existsInSet(Set<BiomeDictionary.Type> toSearch, BiomeDictionary.Type[] toMatch) {
+	private boolean existsInSet(Set<BiomeDictionary.Type> toSearch, Set<BiomeDictionary.Type> toMatch) {
 		if (toSearch.isEmpty()) {
 			return false;
 		}

@@ -118,8 +118,8 @@ public class KWorldGenBigTree extends AbstractWorldGenerator implements ITreeCon
                     //if(d1 < -5D) d1 = -5D;
                     // branch angle (around trunk)
                     double d2 = (double)rand.nextFloat() * 2D * Math.PI;
-                    int k1 = MathHelper.floor_double(d1 * Math.sin(d2) + (double)basePos[0] + d0);
-                    int l1 = MathHelper.floor_double(d1 * Math.cos(d2) + (double)basePos[2] + d0);
+                    int k1 = MathHelper.floor(d1 * Math.sin(d2) + (double)basePos[0] + d0);
+                    int l1 = MathHelper.floor(d1 * Math.cos(d2) + (double)basePos[2] + d0);
                     int ai1[] = {
                         k1, j, l1
                     };
@@ -323,9 +323,9 @@ public class KWorldGenBigTree extends AbstractWorldGenerator implements ITreeCon
         int k = 0;
         for(int l = ai2[j] + byte3; k != l; k += byte3)
         {
-            ai3[j] = MathHelper.floor_double((double)(ai[j] + k) + 0.5D);
-            ai3[byte1] = MathHelper.floor_double((double)ai[byte1] + (double)k * d + 0.5D);
-            ai3[byte2] = MathHelper.floor_double((double)ai[byte2] + (double)k * d1 + 0.5D);
+            ai3[j] = MathHelper.floor((double)(ai[j] + k) + 0.5D);
+            ai3[byte1] = MathHelper.floor((double)ai[byte1] + (double)k * d + 0.5D);
+            ai3[byte2] = MathHelper.floor((double)ai[byte2] + (double)k * d1 + 0.5D);
             this.setBlockAndMetadata(ai3[0], ai3[1], ai3[2], wood);
             //worldObj.setBlock(ai3[0], ai3[1], ai3[2], i);
         }
@@ -651,8 +651,8 @@ rootAlt = 10;
                 break;
             }
             ai3[i] = ai[i] + j;
-            ai3[byte1] = MathHelper.floor_double((double)ai[byte1] + (double)j * d);
-            ai3[byte2] = MathHelper.floor_double((double)ai[byte2] + (double)j * d1);
+            ai3[byte1] = MathHelper.floor((double)ai[byte1] + (double)j * d);
+            ai3[byte2] = MathHelper.floor((double)ai[byte2] + (double)j * d1);
             BlockAndMeta l = this.getBlock(ai3[0], ai3[1], ai3[2]);
             if (!l.isAir() && !l.areEqual(wood, leaf)) {
             	break;

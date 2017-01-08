@@ -223,7 +223,7 @@ public class KTreeCfgBiomes {
 	private static String[] biomes(BiomeDictionary.Type ... types) {
 		List<String> strings = new LinkedList<String>();
 		for(BiomeDictionary.Type type : types) {
-			strings.add(type.name());
+			strings.add(type.getName());
 		}
 		
 		return strings.toArray(new String[strings.size()]);
