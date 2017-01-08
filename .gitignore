@@ -11,3 +11,6 @@
 /saves/
 /usernamecache.json
 /crash-reports/
+/.idea/
+/out/
+/run/
