@@ -7,15 +7,15 @@ import karob.bigtrees.KTreeDecorate;
 import karob.bigtrees.compat.BlockPos;
 import karob.bigtrees.compat.WorldWrapper;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class TreeWorldGenerator implements IWorldGenerator{
+public class TreeWorldGenerator implements IWorldGenerator {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World orgWorld,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random random, int chunkX, int chunkZ, World orgWorld, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		int x = chunkX * 16;
 		int z = chunkZ * 16;
 		
@@ -27,8 +27,8 @@ public class TreeWorldGenerator implements IWorldGenerator{
 		}
 		
 		BlockPos position = new BlockPos(x, 0, z);
-		BiomeGenBase biome = world.getBiomeGenForCoords(position);
 		
+		Biome biome = world.getBiomeGenForCoords(position);
 		KTreeDecorate.decorate(world, random, position, biome);
 	}
 

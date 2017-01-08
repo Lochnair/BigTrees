@@ -4,8 +4,6 @@
 
 package karob.bigtrees;
 
-import java.util.Random;
-
 import karob.bigtrees.compat.BlockPos;
 import karob.bigtrees.compat.IWorldGenerator;
 import karob.bigtrees.compat.WorldWrapper;
@@ -13,17 +11,10 @@ import karob.bigtrees.config.Algorithm;
 import karob.bigtrees.config.ITreeConfigurable;
 import karob.bigtrees.config.Population;
 import karob.bigtrees.config.TreeConfiguration;
-import karob.bigtrees.generators.KWorldGenCyprusTree;
-import karob.bigtrees.generators.KWorldGenHatTree;
-import karob.bigtrees.generators.KWorldGenTallTree;
-import karob.bigtrees.generators.WorldGenBigBirch;
-import karob.bigtrees.generators.WorldGenBigPine;
-import karob.bigtrees.generators.WorldGenBlockOak;
-import karob.bigtrees.generators.WorldGenDesertTree;
-import karob.bigtrees.generators.WorldGenGreatOak;
-import karob.bigtrees.generators.WorldGenSwampOak;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.fml.common.FMLLog;
+import karob.bigtrees.generators.*;
+import net.minecraft.world.biome.Biome;
+
+import java.util.Random;
 
 public class KTreeDecorate {
 	public static int numberoftrees = 0;
@@ -32,7 +23,7 @@ public class KTreeDecorate {
 		// currentRealm = -12349;
 	}
 
-	public static boolean decorate(WorldWrapper world, Random rand, BlockPos position, BiomeGenBase biome) {
+	public static boolean decorate(WorldWrapper world, Random rand, BlockPos position, Biome biome) {
 		int posX = position.getX();
 		int posZ = position.getY();
 		
@@ -56,8 +47,8 @@ public class KTreeDecorate {
 				/* In case we wander outside out original biome, don't generate there.
 				 * This should stop trees in desert edges and such.
 				 */
-				BiomeGenBase currentBiome = world.getBiomeGenForCoords(treePosition);
-				if (currentBiome.biomeID != biome.biomeID) {
+				Biome currentBiome = world.getBiomeGenForCoords(treePosition);
+				if (!currentBiome.getRegistryName().equals(biome.getRegistryName())) {
 					continue;
 				}
 				
@@ -75,7 +66,7 @@ public class KTreeDecorate {
 	}
 	
 
-	private static Population getBiomePopulation(BiomeGenBase biome,
+	private static Population getBiomePopulation(Biome biome,
 			TreeConfiguration treeConfiguration) {
 		return KTreeCfgBiomes.getTreeDensityForBiomeType(biome, treeConfiguration);
 	}

@@ -13,7 +13,8 @@ import karob.bigtrees.config.BiomeConfiguration.Match;
 import karob.bigtrees.config.Population;
 import karob.bigtrees.config.TreeConfiguration;
 import karob.bigtrees.config.defaults.Defaults;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.init.Biomes;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.config.ConfigCategory;
@@ -27,7 +28,7 @@ public class KTreeCfgBiomes {
 	
 	private static List<BiomeConfiguration> biomeConfigurations = new LinkedList<BiomeConfiguration>();
 	
-	public static Population getTreeDensityForBiomeType(BiomeGenBase biome, TreeConfiguration treeConfiguration) {
+	public static Population getTreeDensityForBiomeType(Biome biome, TreeConfiguration treeConfiguration) {
 		Population population = null;
 		Population priorityPopulation = null;
 		
@@ -183,9 +184,7 @@ public class KTreeCfgBiomes {
 		addCategory("deserts", biomes(Type.SANDY, Type.WASTELAND, Type.MESA), biomes(Type.HILLS, Type.MOUNTAIN), defaultSandyDensities, mainParent);
 		addCategory("snowy", biomes(Type.SNOWY), noExcludes(), defaultSnowyDensities, mainParent);
 		addCategory("jungles", biomes(Type.JUNGLE), noExcludes(), defaultJungleDensities, mainParent);
-		addBiomeOverride("birchForests", biomes(BiomeGenBase.birchForest, BiomeGenBase.birchForestHills), overriddenBirchForestDensities, mainParent);
-		
-		
+		addBiomeOverride("birchForests", biomes(Biomes.BIRCH_FOREST, Biomes.BIRCH_FOREST_HILLS), overriddenBirchForestDensities, mainParent);
 		
 		config.save();
 	}
@@ -230,10 +229,10 @@ public class KTreeCfgBiomes {
 		return strings.toArray(new String[strings.size()]);
 	}
 	
-	private static String[] biomes(BiomeGenBase ... biomes) {
+	private static String[] biomes(Biome ... biomes) {
 		List<String> strings = new LinkedList<String>();
-		for(BiomeGenBase biome : biomes) {
-			strings.add(biome.biomeName);
+		for(Biome biome : biomes) {
+			strings.add(biome.getBiomeName());
 		}
 		
 		return strings.toArray(new String[strings.size()]);

@@ -21,7 +21,7 @@ public class BlockAndMeta {
 		String[] nameItems = codedBlockAndMetaString.split(":");
 		
 		if (nameItems.length >= 2) {
-			block = GameRegistry.findBlock(nameItems[0], nameItems[1]);
+			block = Block.REGISTRY.getObject(new ResourceLocation(nameItems[0], nameItems[1]));
 		}
 		
 		if (nameItems.length == 3) {
@@ -36,7 +36,7 @@ public class BlockAndMeta {
 	}
 	
 	public boolean isAir() {
-		return block == Blocks.air;
+		return block == Blocks.AIR;
 	}
 	
 	public BlockAndMeta(Block block) {
@@ -121,8 +121,8 @@ public class BlockAndMeta {
 		if (block == null) {
 			return "";
 		}
-		ResourceLocation nameForObject = GameData.getBlockRegistry().getNameForObject(block);
 		
+		ResourceLocation nameForObject = Block.REGISTRY.getNameForObject(block);
 		return nameForObject.toString();
 	}
 	

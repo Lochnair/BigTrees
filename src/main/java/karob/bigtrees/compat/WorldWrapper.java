@@ -3,7 +3,7 @@ package karob.bigtrees.compat;
 import karob.bigtrees.config.BlockAndMeta;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 
 public class WorldWrapper {
 
@@ -13,12 +13,12 @@ public class WorldWrapper {
 		this.world = world;
 	}
 	
-	public BiomeGenBase getBiomeGenForCoords(BlockPos pos) {
-		return world.getBiomeGenForCoords(pos.toPos());
+	public Biome getBiomeGenForCoords(BlockPos pos) {
+		return world.getBiome(pos.toPos());
 	}
 	
 	public int getDimensionId() {
-		return world.provider.getDimensionId();
+		return world.provider.getDimension();
 	}
 	
 	public long getSeed() {

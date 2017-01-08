@@ -14,7 +14,7 @@ import karob.bigtrees.config.ITreeConfigurable;
 import karob.bigtrees.config.TreeConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 //import net.minecraft.src.KTreeCfg;
@@ -191,7 +191,7 @@ public class KWorldGenBigTree extends AbstractWorldGenerator implements ITreeCon
                 {
                     ai1[byte2] = ai[byte2] + l1;
                     BlockAndMeta i2 = this.getBlock(ai1[0], ai1[1], ai1[2]);
-                    if (!i2.areEqual(Blocks.air, Blocks.leaves))
+                    if (!i2.areEqual(Blocks.AIR, Blocks.LEAVES))
                     {
                         l1++;
                     } else

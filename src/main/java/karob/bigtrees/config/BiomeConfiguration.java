@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import karob.bigtrees.KTreeCfgTrees;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Property;
@@ -84,7 +84,7 @@ public class BiomeConfiguration {
 		return result;
 	}
 	
-	public Match matches(BiomeGenBase biome) {
+	public Match matches(Biome biome) {
 		BiomeDictionary.Type[] types = BiomeDictionary.getTypesForBiome(biome);
 		
 		if (hasBiomeSpecificOverride(biome)) {
@@ -98,8 +98,8 @@ public class BiomeConfiguration {
 		return existsInSet(includedBiomeTypes, types) ? Match.Match : Match.NoMatch;
 	}
 
-	private boolean hasBiomeSpecificOverride(BiomeGenBase biome) {
-		return specificBiomes.contains(biome.biomeName.toLowerCase());
+	private boolean hasBiomeSpecificOverride(Biome biome) {
+		return specificBiomes.contains(biome.getBiomeName().toLowerCase());
 	}
 	
 	private boolean existsInSet(Set<BiomeDictionary.Type> toSearch, BiomeDictionary.Type[] toMatch) {
